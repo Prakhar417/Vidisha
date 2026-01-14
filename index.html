@@ -50,58 +50,71 @@
       padding: 20px;
     }
 
-    /* Mobile-first responsive changes */
+    /* Mobile responsive - side photos visible (stacked) */
     @media (max-width: 900px) {
-      .wrapper {
-        flex-direction: column;           /* Stack everything vertically */
-      }
-
+      .wrapper { flex-direction: column; }
       .sidebar {
-        width: 100%;                      /* Full width on mobile */
+        width: 100%;
         min-width: auto;
-        flex-direction: row;              /* Images side-by-side in one row */
-        flex-wrap: wrap;                  /* Wrap if too many for one line */
+        flex-direction: row;
+        flex-wrap: wrap;
         justify-content: center;
         gap: 12px;
         padding: 12px;
-        height: auto;                     /* No fixed height */
-        position: static;                 /* No sticky on mobile */
+        height: auto;
+        position: static;
       }
-
-      .sidebar.left { order: 1; }         /* Left sidebar first (top) */
-      .sidebar.right { order: 3; }        /* Right sidebar last (bottom) */
-      .main-content { order: 2; }         /* Main content in middle */
-
-      .sidebar img {
-        width: 45%;                       /* 2 images per row on small screens */
-        max-width: 180px;
-      }
+      .sidebar.left { order: 1; }
+      .sidebar.right { order: 3; }
+      .main-content { order: 2; }
+      .sidebar img { width: 45%; max-width: 180px; }
     }
 
     @media (max-width: 500px) {
-      .sidebar img { width: 80%; max-width: 140px; } /* Even smaller phones: 1 per row-ish */
+      .sidebar img { width: 80%; max-width: 140px; }
     }
 
-    /* Your original styles below - unchanged */
+    /* Your original styles - unchanged */
     .container { text-align: center; padding: 30px 15px; animation: fadeIn 2s ease-in; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .heart { font-size: 4rem; margin-bottom: 15px; animation: heartbeat 1.8s infinite; }
     @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
     h2 { font-size: 2.6rem; margin-bottom: 25px; color: #ffccff; text-shadow: 0 0 15px rgba(255, 100, 255, 0.6); }
-    .card { background: rgba(40, 20, 70, 0.45); border-radius: 20px; padding: 30px; max-width: 900px; margin: 0 auto 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); backdrop-filter: blur(8px); border: 1px solid rgba(255, 200, 255, 0.15); }
-    .paragraph, .poem { font-size: 1.35rem; line-height: 1.7; margin: 25px 0; color: #f0e0ff; }
-    .poem { font-style: italic; color: #ffb6ff; text-shadow: 0 0 10px rgba(255, 182, 255, 0.5); white-space: pre-wrap; }
-    .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 40px 0; }
-    .photo-grid img { width: 100%; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.5); transition: transform 0.4s, box-shadow 0.4s; }
-    .photo-grid img:hover { transform: scale(1.05); box-shadow: 0 12px 35px rgba(255, 100, 200, 0.4); }
-    footer { font-size: 1.4rem; margin-top: 50px; color: #ffccff; text-shadow: 0 0 10px rgba(255, 204, 255, 0.5); }
+    .card { 
+      background: rgba(40, 20, 70, 0.45); 
+      border-radius: 20px; 
+      padding: 30px; 
+      max-width: 900px; 
+      margin: 0 auto 40px; 
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6); 
+      backdrop-filter: blur(8px); 
+      border: 1px solid rgba(255, 200, 255, 0.15); 
+    }
+    .paragraph, .poem { 
+      font-size: 1.35rem; 
+      line-height: 1.7; 
+      margin: 25px 0; 
+      color: #f0e0ff; 
+    }
+    .poem { 
+      font-style: italic; 
+      color: #ffb6ff; 
+      text-shadow: 0 0 10px rgba(255, 182, 255, 0.5); 
+      white-space: pre-wrap; 
+    }
+    footer { 
+      font-size: 1.4rem; 
+      margin-top: 50px; 
+      color: #ffccff; 
+      text-shadow: 0 0 10px rgba(255, 204, 255, 0.5); 
+    }
   </style>
 </head>
 <body>
 
 <div class="wrapper">
 
-  <!-- LEFT SIDEBAR (now top on mobile) -->
+  <!-- LEFT SIDEBAR -->
   <aside class="sidebar left">
     <img src="https://i.postimg.cc/WddH2X23/Whats-App-Image-2026-01-14-at-7-14-10-PM.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
     <img src="https://i.postimg.cc/w7fr8Sdj/Whats-App-Image-2026-01-14-at-7-14-11-PM.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
@@ -140,15 +153,7 @@ Aap ho meri duniya, meri rooh ka ishaara.
 🫠💌✨
 Happiessttt bdaayyyyy Vidisshhaaaa🫠💗
         </div>
-        <div class="photo-grid" id="photoGrid">
-          <img src="https://via.placeholder.com/300x300?text=1" alt="Photo 1">
-          <img src="https://via.placeholder.com/300x300?text=2" alt="Photo 2">
-          <img src="https://via.placeholder.com/300x300?text=3" alt="Photo 3">
-          <img src="https://via.placeholder.com/300x300?text=4" alt="Photo 4">
-          <img src="https://via.placeholder.com/300x300?text=5" alt="Photo 5">
-          <img src="https://via.placeholder.com/300x300?text=6" alt="Photo 6">
-          <img src="https://via.placeholder.com/300x300?text=7" alt="Photo 7">
-        </div>
+        <!-- Photo grid completely removed as requested -->
       </div>
       <footer>
         Always yours,<br>
@@ -157,7 +162,7 @@ Happiessttt bdaayyyyy Vidisshhaaaa🫠💗
     </div>
   </div>
 
-  <!-- RIGHT SIDEBAR (now bottom on mobile) -->
+  <!-- RIGHT SIDEBAR -->
   <aside class="sidebar right">
     <img src="https://i.postimg.cc/tYCcc98p/Whats-App-Image-2026-01-14-at-7-14-12-PM-1.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
     <img src="https://i.postimg.cc/Ln6WWmGM/Whats-App-Image-2026-01-14-at-7-14-12-PM-2.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
