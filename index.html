@@ -7,13 +7,82 @@
   
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { min-height: 100vh; background: #0f001a; color: #ffe0ff; font-family: 'Segoe UI', system-ui, sans-serif; overflow-x: hidden; }
-    .wrapper { display: flex; min-height: 100vh; }
-    .sidebar { width: 18%; min-width: 220px; padding: 15px 10px; display: flex; flex-direction: column; gap: 18px; background: rgba(30, 10, 50, 0.35); overflow-y: auto; position: sticky; top: 0; height: 100vh; }
-    .sidebar img { width: 100%; height: auto; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 15px rgba(0,0,0,0.6); transition: transform 0.3s ease; }
+    body { 
+      min-height: 100vh; 
+      background: #0f001a; 
+      color: #ffe0ff; 
+      font-family: 'Segoe UI', system-ui, sans-serif; 
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 18%;
+      min-width: 220px;
+      padding: 15px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      background: rgba(30, 10, 50, 0.35);
+      overflow-y: auto;
+    }
+
+    .sidebar img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease;
+      loading: lazy;
+    }
+
     .sidebar img:hover { transform: scale(1.06); }
-    .main-content { flex: 1; max-width: 1100px; margin: 0 auto; padding: 20px; }
-    @media (max-width: 1100px) { .sidebar { display: none; } }
+
+    .main-content {
+      flex: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Mobile-first responsive changes */
+    @media (max-width: 900px) {
+      .wrapper {
+        flex-direction: column;           /* Stack everything vertically */
+      }
+
+      .sidebar {
+        width: 100%;                      /* Full width on mobile */
+        min-width: auto;
+        flex-direction: row;              /* Images side-by-side in one row */
+        flex-wrap: wrap;                  /* Wrap if too many for one line */
+        justify-content: center;
+        gap: 12px;
+        padding: 12px;
+        height: auto;                     /* No fixed height */
+        position: static;                 /* No sticky on mobile */
+      }
+
+      .sidebar.left { order: 1; }         /* Left sidebar first (top) */
+      .sidebar.right { order: 3; }        /* Right sidebar last (bottom) */
+      .main-content { order: 2; }         /* Main content in middle */
+
+      .sidebar img {
+        width: 45%;                       /* 2 images per row on small screens */
+        max-width: 180px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .sidebar img { width: 80%; max-width: 140px; } /* Even smaller phones: 1 per row-ish */
+    }
+
+    /* Your original styles below - unchanged */
     .container { text-align: center; padding: 30px 15px; animation: fadeIn 2s ease-in; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .heart { font-size: 4rem; margin-bottom: 15px; animation: heartbeat 1.8s infinite; }
@@ -32,22 +101,21 @@
 
 <div class="wrapper">
 
-  <!-- LEFT SIDEBAR - First 6 of your uploaded photos -->
-  <aside class="sidebar">
-    <img src="https://i.postimg.cc/WddH2X23/Whats-App-Image-2026-01-14-at-7-14-10-PM.jpg" alt="Vidisha portrait">
-    <img src="https://i.postimg.cc/w7fr8Sdj/Whats-App-Image-2026-01-14-at-7-14-11-PM.jpg" alt="Vidisha smiling close-up">
-    <img src="https://i.postimg.cc/rKnHXvLT/Whats-App-Image-2026-01-14-at-7-14-11-PM-1.jpg" alt="Vidisha in red traditional outfit">
-    <img src="https://i.postimg.cc/VdGhQ3cm/Whats-App-Image-2026-01-14-at-7-14-11-PM-2.jpg" alt="Vidisha traditional pose">
-    <img src="https://i.postimg.cc/RNsY5jzM/Whats-App-Image-2026-01-14-at-7-14-11-PM-3.jpg" alt="Vidisha close-up with earrings">
-    <img src="https://i.postimg.cc/fJ2Pn6Q6/Whats-App-Image-2026-01-14-at-7-14-12-PM.jpg" alt="Vidisha side view">
+  <!-- LEFT SIDEBAR (now top on mobile) -->
+  <aside class="sidebar left">
+    <img src="https://i.postimg.cc/WddH2X23/Whats-App-Image-2026-01-14-at-7-14-10-PM.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
+    <img src="https://i.postimg.cc/w7fr8Sdj/Whats-App-Image-2026-01-14-at-7-14-11-PM.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
+    <img src="https://i.postimg.cc/rKnHXvLT/Whats-App-Image-2026-01-14-at-7-14-11-PM-1.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
+    <img src="https://i.postimg.cc/VdGhQ3cm/Whats-App-Image-2026-01-14-at-7-14-11-PM-2.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
+    <img src="https://i.postimg.cc/RNsY5jzM/Whats-App-Image-2026-01-14-at-7-14-11-PM-3.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
+    <img src="https://i.postimg.cc/fJ2Pn6Q6/Whats-App-Image-2026-01-14-at-7-14-12-PM.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
   </aside>
 
-  <!-- YOUR ORIGINAL CONTENT - completely unchanged -->
+  <!-- MAIN CONTENT -->
   <div class="main-content">
     <div class="container" id="main" style="display:none;">
       <div class="heart">❤️</div>
       <h2>20th — The day my world became brighter ✨</h2>
-      <!-- Hidden Audio -->
       <audio id="bgMusic" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
       </audio>
@@ -72,7 +140,6 @@ Aap ho meri duniya, meri rooh ka ishaara.
 🫠💌✨
 Happiessttt bdaayyyyy Vidisshhaaaa🫠💗
         </div>
-        <!-- Photo Grid -->
         <div class="photo-grid" id="photoGrid">
           <img src="https://via.placeholder.com/300x300?text=1" alt="Photo 1">
           <img src="https://via.placeholder.com/300x300?text=2" alt="Photo 2">
@@ -90,14 +157,14 @@ Happiessttt bdaayyyyy Vidisshhaaaa🫠💗
     </div>
   </div>
 
-  <!-- RIGHT SIDEBAR - Last 6 of your uploaded photos -->
-  <aside class="sidebar">
-    <img src="https://i.postimg.cc/tYCcc98p/Whats-App-Image-2026-01-14-at-7-14-12-PM-1.jpg" alt="Vidisha hair up pose">
-    <img src="https://i.postimg.cc/Ln6WWmGM/Whats-App-Image-2026-01-14-at-7-14-12-PM-2.jpg" alt="Vidisha patterned top">
-    <img src="https://i.postimg.cc/MvKLLzNg/Whats-App-Image-2026-01-14-at-7-14-12-PM-3.jpg" alt="Vidisha side profile sky">
-    <img src="https://i.postimg.cc/SJNPPmHb/Whats-App-Image-2026-01-14-at-7-14-13-PM.jpg" alt="Vidisha lying down">
-    <img src="https://i.postimg.cc/JG4FFRvY/Whats-App-Image-2026-01-14-at-7-29-46-PM.jpg" alt="Vidisha elegant portrait">
-    <img src="https://i.postimg.cc/hfPYYK6T/Whats-App-Image-2026-01-14-at-7-29-47-PM.jpg" alt="Vidisha final smile">
+  <!-- RIGHT SIDEBAR (now bottom on mobile) -->
+  <aside class="sidebar right">
+    <img src="https://i.postimg.cc/tYCcc98p/Whats-App-Image-2026-01-14-at-7-14-12-PM-1.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
+    <img src="https://i.postimg.cc/Ln6WWmGM/Whats-App-Image-2026-01-14-at-7-14-12-PM-2.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
+    <img src="https://i.postimg.cc/MvKLLzNg/Whats-App-Image-2026-01-14-at-7-14-12-PM-3.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
+    <img src="https://i.postimg.cc/SJNPPmHb/Whats-App-Image-2026-01-14-at-7-14-13-PM.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
+    <img src="https://i.postimg.cc/JG4FFRvY/Whats-App-Image-2026-01-14-at-7-29-46-PM.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
+    <img src="https://i.postimg.cc/hfPYYK6T/Whats-App-Image-2026-01-14-at-7-29-47-PM.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
   </aside>
 
 </div>
@@ -105,8 +172,6 @@ Happiessttt bdaayyyyy Vidisshhaaaa🫠💗
 <script>
   window.onload = function() {
     document.getElementById("main").style.display = "block";
-    // Uncomment below if you want auto-play (may require user interaction in some browsers)
-    // document.getElementById("bgMusic").play().catch(() => {});
   };
 </script>
 
