@@ -5,164 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>20th Birthday - Meri Jaan ✨</title>
   
-  <!-- Confetti library (from previous version) -->
+  <!-- Confetti library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   
   <style>
+    /* Keep all your previous styles here – I'm not repeating them to save space, just paste them back */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { 
-      min-height: 100vh; 
-      background: #0f001a; 
-      color: #ffe0ff; 
-      font-family: 'Segoe UI', system-ui, sans-serif; 
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* Floating Hearts Animation */
-    .hearts-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 5;
-      overflow: hidden;
-    }
-
-    .heart-float {
-      position: absolute;
-      font-size: 1.8rem;
-      color: #ff69b4;
-      text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
-      animation: floatUp linear forwards;
-      user-select: none;
-    }
-
-    @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0.8;
-      }
-      20% { opacity: 1; transform: translateY(80vh) scale(1); }
-      100% {
-        transform: translateY(-20vh) scale(1.2);
-        opacity: 0;
-      }
-    }
-
-    .wrapper {
-      display: flex;
-      flex-direction: row;
-      min-height: 100vh;
-      position: relative;
-    }
-
-    .sidebar {
-      width: 18%;
-      min-width: 220px;
-      padding: 15px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      background: rgba(30, 10, 50, 0.35);
-      overflow-y: auto;
-      position: relative;
-      z-index: 10;
-    }
-
-    .sidebar img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease;
-      loading: lazy;
-    }
-
+    body { min-height: 100vh; background: #0f001a; color: #ffe0ff; font-family: 'Segoe UI', system-ui, sans-serif; overflow-x: hidden; position: relative; }
+    .hearts-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; overflow: hidden; }
+    .heart-float { position: absolute; font-size: 1.8rem; color: #ff69b4; text-shadow: 0 0 10px rgba(255, 105, 180, 0.8); animation: floatUp linear forwards; user-select: none; }
+    @keyframes floatUp { 0% { transform: translateY(100vh) scale(0.5); opacity: 0.8; } 20% { opacity: 1; transform: translateY(80vh) scale(1); } 100% { transform: translateY(-20vh) scale(1.2); opacity: 0; } }
+    .wrapper { display: flex; flex-direction: row; min-height: 100vh; position: relative; }
+    .sidebar { width: 18%; min-width: 220px; padding: 15px 10px; display: flex; flex-direction: column; gap: 18px; background: rgba(30, 10, 50, 0.35); overflow-y: auto; position: relative; z-index: 10; }
+    .sidebar img { width: 100%; height: auto; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 15px rgba(0,0,0,0.6); transition: transform 0.3s ease; loading: lazy; }
     .sidebar img:hover { transform: scale(1.06); }
-
-    .main-content {
-      flex: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 20px;
-      position: relative;
-      z-index: 10;
-    }
-
-    /* Mobile responsive */
-    @media (max-width: 900px) {
-      .wrapper { flex-direction: column; }
-      .sidebar {
-        width: 100%;
-        min-width: auto;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-        padding: 12px;
-        height: auto;
-        position: static;
-      }
-      .sidebar.left { order: 1; }
-      .sidebar.right { order: 3; }
-      .main-content { order: 2; }
-      .sidebar img { width: 45%; max-width: 180px; }
-    }
-
-    @media (max-width: 500px) {
-      .sidebar img { width: 80%; max-width: 140px; }
-    }
-
-    /* Your original styles */
+    .main-content { flex: 1; max-width: 1100px; margin: 0 auto; padding: 20px; position: relative; z-index: 10; }
+    @media (max-width: 900px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; min-width: auto; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 12px; padding: 12px; height: auto; position: static; } .sidebar.left { order: 1; } .sidebar.right { order: 3; } .main-content { order: 2; } .sidebar img { width: 45%; max-width: 180px; } }
+    @media (max-width: 500px) { .sidebar img { width: 80%; max-width: 140px; } }
     .container { text-align: center; padding: 30px 15px; animation: fadeIn 2s ease-in; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .heart { font-size: 4rem; margin-bottom: 15px; animation: heartbeat 1.8s infinite; }
     @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
     h2 { font-size: 2.6rem; margin-bottom: 25px; color: #ffccff; text-shadow: 0 0 15px rgba(255, 100, 255, 0.6); }
-    .card { 
-      background: rgba(40, 20, 70, 0.45); 
-      border-radius: 20px; 
-      padding: 30px; 
-      max-width: 900px; 
-      margin: 0 auto 40px; 
-      box-shadow: 0 10px 40px rgba(0,0,0,0.6); 
-      backdrop-filter: blur(8px); 
-      border: 1px solid rgba(255, 200, 255, 0.15); 
-      position: relative;
-      z-index: 10;
-    }
-    .paragraph, .poem { 
-      font-size: 1.35rem; 
-      line-height: 1.7; 
-      margin: 25px 0; 
-      color: #f0e0ff; 
-    }
-    .poem { 
-      font-style: italic; 
-      color: #ffb6ff; 
-      text-shadow: 0 0 10px rgba(255, 182, 255, 0.5); 
-      white-space: pre-wrap; 
-    }
-    footer { 
-      font-size: 1.4rem; 
-      margin-top: 50px; 
-      color: #ffccff; 
-      text-shadow: 0 0 10px rgba(255, 204, 255, 0.5); 
+    .card { background: rgba(40, 20, 70, 0.45); border-radius: 20px; padding: 30px; max-width: 900px; margin: 0 auto 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); backdrop-filter: blur(8px); border: 1px solid rgba(255, 200, 255, 0.15); position: relative; z-index: 10; }
+    .paragraph, .poem { font-size: 1.35rem; line-height: 1.7; margin: 25px 0; color: #f0e0ff; }
+    .poem { font-style: italic; color: #ffb6ff; text-shadow: 0 0 10px rgba(255, 182, 255, 0.5); white-space: pre-wrap; }
+    footer { font-size: 1.4rem; margin-top: 50px; color: #ffccff; text-shadow: 0 0 10px rgba(255, 204, 255, 0.5); }
+    
+    /* Music controls */
+    #music-controls {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      z-index: 999;
+      background: rgba(40, 20, 70, 0.7);
+      padding: 10px 15px;
+      border-radius: 30px;
+      color: #ffb6ff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      user-select: none;
     }
   </style>
 </head>
 <body>
 
-<!-- Floating Hearts Container -->
 <div class="hearts-container" id="hearts"></div>
+
+<!-- Background Music (starts muted, loops, user unmutes on click) -->
+<audio id="bgMusic" loop muted playsinline>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Simple unmute prompt -->
+<div id="music-controls" onclick="toggleMusic()">🎵 Tap to play music & unmute</div>
 
 <div class="wrapper">
 
-  <!-- LEFT SIDEBAR -->
+  <!-- LEFT SIDEBAR - your 6 images -->
   <aside class="sidebar left">
     <img src="https://i.postimg.cc/WddH2X23/Whats-App-Image-2026-01-14-at-7-14-10-PM.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
     <img src="https://i.postimg.cc/w7fr8Sdj/Whats-App-Image-2026-01-14-at-7-14-11-PM.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
@@ -172,14 +74,11 @@
     <img src="https://i.postimg.cc/fJ2Pn6Q6/Whats-App-Image-2026-01-14-at-7-14-12-PM.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
   </aside>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN CONTENT (full text restored) -->
   <div class="main-content">
     <div class="container" id="main" style="display:none;">
       <div class="heart">❤️</div>
       <h2>20th — The day my world became brighter ✨</h2>
-      <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-      </audio>
       <div class="card" id="card">
         <div class="paragraph" id="paragraph">
 HEYYYY BABBBYYYYY, finally this day is here nd I am soooo exciitedddd myyy babbbyyy!
@@ -209,7 +108,7 @@ Happiessttt bdaayyyyy Vidisshhaaaa🫠💗
     </div>
   </div>
 
-  <!-- RIGHT SIDEBAR -->
+  <!-- RIGHT SIDEBAR - your 6 images -->
   <aside class="sidebar right">
     <img src="https://i.postimg.cc/tYCcc98p/Whats-App-Image-2026-01-14-at-7-14-12-PM-1.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
     <img src="https://i.postimg.cc/Ln6WWmGM/Whats-App-Image-2026-01-14-at-7-14-12-PM-2.jpg" alt="Vidisha" referrerpolicy="no-referrer" loading="lazy">
@@ -221,13 +120,23 @@ Happiessttt bdaayyyyy Vidisshhaaaa🫠💗
 
 </div>
 
-<!-- Scripts -->
 <script>
-  // Show main content
+  // Toggle music on click (unmute & set volume)
+  function toggleMusic() {
+    const audio = document.getElementById("bgMusic");
+    audio.muted = false;
+    audio.volume = 0.3; // soft background level
+    audio.play(); // ensure it plays if paused
+    document.getElementById("music-controls").innerHTML = "🎵 Music on! (tap to mute)";
+  }
+
   window.onload = function() {
     document.getElementById("main").style.display = "block";
 
-    // Confetti (from previous)
+    // Auto-start muted (works in most cases)
+    document.getElementById("bgMusic").play().catch(() => { /* silent fail is ok */ });
+
+    // Confetti
     confetti({
       particleCount: 150,
       spread: 90,
@@ -240,19 +149,14 @@ Happiessttt bdaayyyyy Vidisshhaaaa🫠💗
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart-float";
-      heart.innerHTML = "💗✨";
+      heart.innerHTML = "💗";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (Math.random() * 5 + 6) + "s"; // 6-11 seconds
+      heart.style.animationDuration = (Math.random() * 5 + 6) + "s";
       document.getElementById("hearts").appendChild(heart);
-
-      // Remove after animation ends
       heart.addEventListener("animationend", () => heart.remove());
     }
 
-    // Create hearts periodically
-    setInterval(createHeart, 600); // new heart every 0.6 seconds
-
-    // Initial burst of hearts
+    setInterval(createHeart, 600);
     for(let i = 0; i < 15; i++) {
       setTimeout(createHeart, i * 200);
     }
